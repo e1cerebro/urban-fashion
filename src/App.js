@@ -4,16 +4,22 @@ import Homepage from './pages/homepage/Homepage';
 import Shop from './pages/shop/Shop';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/SignInAndSignUpPage';
 import Header from './components/header/Header';
-import { auth } from './firebase/firebase.util';
+import { auth, createUserProfileDocument } from './firebase/firebase.util';
 import './App.scss';
-
+require('dotenv').config();
 const App = () => {
   const [currentuser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      setCurrentUser(user);
-      console.log(user);
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      const userRef = await createUserProfileDocument(userAuth);
+
+      if (userAuth) {
+        userRef.onSnapshot(snapshot => {
+          setCurrentUser({ id: snapshot.id, ...snapshot.data() });
+        });
+      }
+      setCurrentUser(null);
     });
 
     return () => {
