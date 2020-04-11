@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './signin.scss';
 import FormInput from '../../components/form-input/FormInput';
+import { withRouter } from 'react-router-dom';
 import Button from '../button/Button';
-import { signInWithGoogle } from '../../firebase/firebase.util';
+import { auth, signInWithGoogle } from '../../firebase/firebase.util';
 
 class SignIn extends Component {
   state = {
@@ -10,8 +11,25 @@ class SignIn extends Component {
     password: '',
   };
 
-  handleSubmit = event => {
+  componentDidMount() {
+    console.log(auth);
+    if (auth.currentUser) {
+      this.props.history.push('/');
+    }
+  }
+
+  handleSubmit = async event => {
     event.preventDefault();
+    const { email, password } = this.state;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({
+        email: '',
+        password: '',
+      });
+      this.props.history.push('/');
+    } catch (error) {}
   };
 
   handleChange = event => {
@@ -58,4 +76,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default withRouter(SignIn);
