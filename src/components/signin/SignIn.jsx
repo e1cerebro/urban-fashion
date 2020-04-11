@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './signin.scss';
 import FormInput from '../../components/form-input/FormInput';
 import Button from '../button/Button';
+import { signInWithGoogle } from '../../firebase/firebase.util';
+
 class SignIn extends Component {
   state = {
     email: '',
@@ -10,7 +12,6 @@ class SignIn extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(event);
   };
 
   handleChange = event => {
@@ -42,7 +43,15 @@ class SignIn extends Component {
             required
             label='password'
           />
-          <Button type='submit'>Sign in</Button>
+          <div className='buttons'>
+            <Button type='submit'>Sign in</Button>
+            <Button
+              type='button'
+              isGoogleSignIn={true}
+              onClick={signInWithGoogle}>
+              Sign in with google
+            </Button>
+          </div>
         </form>
       </div>
     );
