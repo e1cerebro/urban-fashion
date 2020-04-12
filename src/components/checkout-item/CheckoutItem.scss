@@ -24,6 +24,14 @@
 
   .quantity {
     padding-left: 20px;
+    display: flex;
+    .arrow {
+      cursor: pointer;
+      margin: 0 10px;
+      background-color: #121212;
+      padding: 0 13px;
+      color: #fff;
+    }
   }
 
   .remove-button {

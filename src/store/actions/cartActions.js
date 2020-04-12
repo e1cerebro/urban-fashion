@@ -19,3 +19,22 @@ export const addItem = item => {
     }
   };
 };
+export const removeCartItem = item => {
+  return async dispatch => {
+    try {
+      dispatch({ type: CART_ACTION_TYPES.REMOVE_CART_ITEM, item });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const decreaseCartItem = item => {
+  return async dispatch => {
+    try {
+      dispatch({ type: CART_ACTION_TYPES.DECREASE_CART_ITEM, item });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
