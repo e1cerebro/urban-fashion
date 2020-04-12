@@ -5,7 +5,7 @@ import CartItem from '../cart-item/CartItem';
 import { withRouter } from 'react-router-dom';
 import { toggleCartHidden } from '../../store/actions/cartActions';
 import { connect } from 'react-redux';
-import { selectCartItems } from '../../store/reducers/cart.selectors';
+import { selectCartItems } from '../../store/selectors/cart.selectors';
 import { createStructuredSelector } from 'reselect';
 
 const CartDropdown = ({ cartItems, history, toggleCartHidden, location }) => {
@@ -13,8 +13,6 @@ const CartDropdown = ({ cartItems, history, toggleCartHidden, location }) => {
     toggleCartHidden();
     history.push('/checkout');
   };
-
-  console.log(location);
 
   return (
     <div className='cart-dropdown'>

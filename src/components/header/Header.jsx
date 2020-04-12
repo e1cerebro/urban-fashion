@@ -7,8 +7,8 @@ import './Header.scss';
 import CartIcon from '../cart-icon/CartIcon';
 import CartDropdown from '../cart-dropdown/CartDropdown';
 import { createStructuredSelector } from 'reselect';
-import { selectCartHidden } from '../../store/reducers/cart.selectors';
-import { selectCurrentUser } from '../../store/reducers/user.selectors';
+import { selectCartHidden } from '../../store/selectors/cart.selectors';
+import { selectCurrentUser } from '../../store/selectors/user.selectors';
 
 const Header = ({ currentUser, hidden }) => {
   return (

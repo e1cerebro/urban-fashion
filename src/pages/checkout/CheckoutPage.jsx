@@ -5,8 +5,9 @@ import { createStructuredSelector } from 'reselect';
 import {
   selectCartItems,
   selectCartTotal,
-} from '../../store/reducers/cart.selectors';
+} from '../../store/selectors/cart.selectors';
 import CheckoutItem from '../../components/checkout-item/CheckoutItem';
+import Button from '../../components/button/Button';
 const CheckoutPage = ({ cartItems, cartTotal }) => {
   if (cartItems.length) {
     return (
@@ -41,6 +42,8 @@ const CheckoutPage = ({ cartItems, cartTotal }) => {
   return (
     <div className='checkout-page'>
       <span>Cart is empty</span>
+      {''}
+      <Button>GO TO SHOP</Button>
     </div>
   );
 };

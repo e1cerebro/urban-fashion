@@ -10,7 +10,7 @@ import { setCurrentUser } from './store/actions/userAction';
 import './App.scss';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/SignInAndSignUpPage';
 import { createStructuredSelector } from 'reselect';
-import { selectCurrentUser } from './store/reducers/user.selectors';
+import { selectCurrentUser } from './store/selectors/user.selectors';
 
 const App = ({ setCurrentUser, currentUser }) => {
   useEffect(() => {
