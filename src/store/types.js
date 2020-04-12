@@ -4,4 +4,5 @@ export const USER_ACTION_TYPES = {
 
 export const CART_ACTION_TYPES = {
   TOGGLE_CART_HIDDEN: 'TOGGLE_CART_HIDDEN',
+  ADD_ITEM: 'ADD_ITEM',
 };

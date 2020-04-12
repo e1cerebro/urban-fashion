@@ -9,3 +9,13 @@ export const toggleCartHidden = () => {
     }
   };
 };
+
+export const addItem = item => {
+  return async dispatch => {
+    try {
+      dispatch({ type: CART_ACTION_TYPES.ADD_ITEM, item });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};

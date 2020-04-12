@@ -1,7 +1,15 @@
 import React from 'react';
 import '../collection-item/collectionItem.scss';
+import Button from '../button/Button';
+import { addItem } from '../../store/actions/cartActions';
+import { connect } from 'react-redux';
 
-const CollectionItem = ({ id, name, price, imageUrl }) => {
+const CollectionItem = ({ item, addItem }) => {
+  const { id, name, price, imageUrl } = item;
+  const handleAddItem = () => {
+    addItem(item);
+  };
+
   return (
     <div className='collection-item'>
       <div className='image' style={{ backgroundImage: `url(${imageUrl})` }} />
@@ -9,8 +17,11 @@ const CollectionItem = ({ id, name, price, imageUrl }) => {
         <span className='name'>{name}</span>
         <span className='price'>{price}</span>
       </div>
+      <Button onClick={handleAddItem} inverted>
+        ADD TO CART
+      </Button>
     </div>
   );
 };
 
-export default CollectionItem;
+export default connect(null, { addItem })(CollectionItem);
