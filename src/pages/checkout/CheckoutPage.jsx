@@ -8,6 +8,8 @@ import {
 } from '../../store/selectors/cart.selectors';
 import CheckoutItem from '../../components/checkout-item/CheckoutItem';
 import Button from '../../components/button/Button';
+
+import StripeCheckoutButton from '../../components/stripe-button/StripeCheckoutButton';
 const CheckoutPage = ({ cartItems, cartTotal }) => {
   if (cartItems.length) {
     return (
@@ -35,6 +37,9 @@ const CheckoutPage = ({ cartItems, cartTotal }) => {
         ))}
         <div className='total'>
           <span>TOTAL: ${cartTotal}</span>
+          <div className='pay-now'>
+            <StripeCheckoutButton price={cartTotal} />
+          </div>
         </div>
       </div>
     );

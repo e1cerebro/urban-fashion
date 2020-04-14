@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Directory.scss';
 import MenuItem from '../../components/menu-item/MenuItem';
 import { connect } from 'react-redux';
@@ -14,10 +14,10 @@ const Directory = ({ categories }) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
     categories: selectProductCategories(state),
   };
 };
 
-export default connect(mapStateToProps, {})(Directory);
+export default connect(mapStateToProps, null)(Directory);

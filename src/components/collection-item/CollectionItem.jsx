@@ -1,11 +1,11 @@
 import React from 'react';
-import '../collection-item/collectionItem.scss';
+import './collectionItem.scss';
 import Button from '../button/Button';
 import { addItem } from '../../store/actions/cartActions';
 import { connect } from 'react-redux';
 
 const CollectionItem = ({ item, addItem }) => {
-  const { id, name, price, imageUrl } = item;
+  const { name, price, imageUrl } = item;
   const handleAddItem = () => {
     addItem(item);
   };
