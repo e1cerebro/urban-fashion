@@ -9,36 +9,37 @@ import CartDropdown from '../cart-dropdown/CartDropdown';
 import { createStructuredSelector } from 'reselect';
 import { selectCartHidden } from '../../store/selectors/cart.selectors';
 import { selectCurrentUser } from '../../store/selectors/user.selectors';
+import {
+  HeaderContainer,
+  LogoContainer,
+  OptionsContainer,
+  OptionLink,
+  OptionDiv,
+} from './header.styles';
 
 const Header = ({ currentUser, hidden }) => {
   return (
-    <div className='header'>
-      <Link to='/' className='logo-container'>
+    <HeaderContainer>
+      <LogoContainer to='/'>
         <Logo className='logo' />
-      </Link>
+      </LogoContainer>
 
-      <div className='options'>
-        <Link to='/shop' className='option'>
-          SHOP
-        </Link>
-        <Link to='/contact' className='option'>
-          CONTACT
-        </Link>
+      <OptionsContainer>
+        <OptionLink to='/shop'>SHOP</OptionLink>
+        <OptionLink to='/contact'>CONTACT</OptionLink>
 
         {currentUser ? (
-          <div className='option' onClick={() => auth.signOut()}>
+          <OptionLink as='div' onClick={() => auth.signOut()}>
             SIGN OUT
-          </div>
+          </OptionLink>
         ) : (
-          <Link to='/signin' className='option'>
-            SIGN IN
-          </Link>
+          <OptionLink to='/signin'>SIGN IN</OptionLink>
         )}
         <CartIcon />
-      </div>
+      </OptionsContainer>
 
       {hidden ? '' : <CartDropdown />}
-    </div>
+    </HeaderContainer>
   );
 };
 

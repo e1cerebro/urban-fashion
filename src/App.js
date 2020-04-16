@@ -4,16 +4,28 @@ import Homepage from './pages/homepage/Homepage';
 import Shop from './pages/shop/Shop';
 import Header from './components/header/Header';
 import CheckoutPage from './pages/checkout/CheckoutPage';
-import { auth, createUserProfileDocument } from './firebase/firebase.util';
+import {
+  auth,
+  createUserProfileDocument,
+  addCollectionAndDocuments,
+} from './firebase/firebase.util';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './store/actions/userAction';
 import './App.scss';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/SignInAndSignUpPage';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './store/selectors/user.selectors';
+import { selectShopCollections } from './store/selectors/shopSelctors';
 
-const App = ({ setCurrentUser, currentUser }) => {
+const App = ({ setCurrentUser, currentUser, collections }) => {
   useEffect(() => {
+    // addCollectionAndDocuments(
+    //   'collections',
+    //   collections.map(collection => ({
+    //     title: collection.title,
+    //     items: collection.items,
+    //   }))
+    // );
     const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       const userRef = await createUserProfileDocument(userAuth);
 
@@ -51,6 +63,7 @@ const App = ({ setCurrentUser, currentUser }) => {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  collections: selectShopCollections,
 });
 
 export default connect(mapStateToProps, { setCurrentUser })(App);
