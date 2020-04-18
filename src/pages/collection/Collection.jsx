@@ -18,7 +18,7 @@ const Collection = ({ collection }) => {
     );
   }
 
-  return <div>404</div>;
+  return <div>{''}</div>;
 };
 
 const mapStateToProps = (state, props) => ({

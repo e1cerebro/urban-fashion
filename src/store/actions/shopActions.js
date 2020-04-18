@@ -1,11 +1,26 @@
 import { SHOP_ACTIONS } from '../types';
+import {
+  convertCollectionSnapshotToMap,
+  firestore,
+} from '../../firebase/firebase.util';
 
-export const updateCollections = collections => {
+export const fetchCollectionsStart = () => {
   return async dispatch => {
     try {
-      dispatch({ type: SHOP_ACTIONS.UPDATE_COLLECTIONS, collections });
+      const collectionRef = firestore.collection('collections');
+      dispatch({ type: SHOP_ACTIONS.FETCH_COLLECTIONS_START });
+      collectionRef.onSnapshot(async snapshot => {
+        const mappedCollections = await convertCollectionSnapshotToMap(
+          snapshot
+        );
+
+        dispatch({
+          type: SHOP_ACTIONS.FETCH_COLLECTIONS_SUCCESSFUL,
+          collections: mappedCollections,
+        });
+      });
     } catch (error) {
-      console.log(error);
+      dispatch({ type: SHOP_ACTIONS.FETCH_COLLECTIONS_FAILURE, error });
     }
   };
 };
